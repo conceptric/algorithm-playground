@@ -16,46 +16,23 @@ describe "SortTestBed" do
     SortTestBed.new([2,1]).insertion_sorted
   end
 
-  describe "Timer" do
-
-    before(:each) do
-      @test_bed = SortTestBed.new([2,1])
-      @test_bed.start_time.should be_nil
-      @test_bed.finish_time.should be_nil
-      @test_bed.insertion_sorted      
+  describe "Elapsed Time" do
+                                                           
+    it "is provided by an instance of Timer" do
+      Timer.any_instance.should_receive(:elapsed_time).once
+      SortTestBed.new([]).elapsed_time      
     end
 
-    it "records a timestamp when the sort method is called" do
-      @test_bed.start_time.should_not be_nil
-      @test_bed.start_time.should be_instance_of(Time)
-    end                                      
-
-    it "records a timestamp when the sort method is returns" do
-      @test_bed.finish_time.should_not be_nil
-      @test_bed.finish_time.should be_instance_of(Time)
+    it "is zero before any algorithm has been run" do
+      SortTestBed.new([]).elapsed_time.should eql(0.0)
     end
 
-    it "returns a Float for sort duration in seconds" do
-      test_duration = @test_bed.elapsed_time
-      test_duration.should_not be_nil
-      test_duration.should be_instance_of(Float)
+    it "begins and ends when an algorithm is executed" do    
+      Timer.any_instance.should_receive(:start).once
+      Timer.any_instance.should_receive(:stop).once
+      SortTestBed.new([2,1]).insertion_sorted
     end
 
-    it "returns the difference between Start and Finish times" do
-      start = Time.now
-      finish = start + (1/1000)
-      expected = finish - start      
-      @test_bed.stub(:start_time).and_return(start)
-      @test_bed.stub(:finish_time).and_return(finish)
-      @test_bed.elapsed_time.should eql(expected)
-    end
-    
-    it "resets the timer" do             
-      @test_bed.reset_timer
-      @test_bed.start_time.should be_nil
-      @test_bed.finish_time.should be_nil
-      @test_bed.elapsed_time.should eql(0)
-    end
   end
   
 end
