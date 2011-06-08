@@ -14,6 +14,7 @@ end
 desc "Run benchmark"
 task :benchmark do
   require_relative './lib/sort_test_bed.rb'
-  test_array = (1..1000).to_a.reverse          
+  test_array = 100.times.map{ Random.new.rand(1..20) }
+  puts test_array.to_s
   SortTestBed.new(test_array).benchmark_integer_sorting  
 end
