@@ -16,15 +16,26 @@ describe "SortTestBed" do
     SortTestBed.new([2,1]).insertion_sorted
   end
 
-  it "records a timestamp when the sort method is called" do
-    test_bed = SortTestBed.new([2,1])
-    test_bed.start_time.should be_nil
-    test_bed.insertion_sorted    
-    test_bed.start_time.should_not be_nil
-    test_bed.start_time.should be_instance_of(Time)
-  end                                      
-  
-  it "records a timestamp when the sort method is returns"
-  it "returns the sort duration in milliseconds"
+  describe "Timer" do
+
+    before(:each) do
+      @test_bed = SortTestBed.new([2,1])
+      @test_bed.start_time.should be_nil
+      @test_bed.finish_time.should be_nil
+      @test_bed.insertion_sorted      
+    end
+
+    it "records a timestamp when the sort method is called" do
+      @test_bed.start_time.should_not be_nil
+      @test_bed.start_time.should be_instance_of(Time)
+    end                                      
+
+    it "records a timestamp when the sort method is returns" do
+      @test_bed.finish_time.should_not be_nil
+      @test_bed.finish_time.should be_instance_of(Time)
+    end
+    it "returns the sort duration in milliseconds"
+    
+  end
   
 end
