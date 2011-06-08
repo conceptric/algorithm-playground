@@ -13,5 +13,17 @@ class IntegerArraySort
     end
     sorted
   end
+
+  def self.merge_sort(unsorted)
+     
+  end
+  
+  def self.split_array_into_two(unsorted)
+    halves = [[],unsorted]
+    while halves.first.size <= ( unsorted.size / 2 )
+      halves.first << halves.last.shift
+    end
+    halves
+  end
 end
 
