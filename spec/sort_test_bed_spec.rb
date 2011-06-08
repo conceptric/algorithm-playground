@@ -35,9 +35,19 @@ describe "SortTestBed" do
       @test_bed.finish_time.should be_instance_of(Time)
     end
 
-    it "returns the sort duration in milliseconds" do
+    it "returns a Float for sort duration in seconds" do
       test_duration = @test_bed.elapsed_time
       test_duration.should_not be_nil
+      test_duration.should be_instance_of(Float)
+    end
+
+    it "returns the difference between Start and Finish times" do
+      start = Time.now
+      finish = start + (1/1000)
+      expected = finish - start      
+      @test_bed.stub(:start_time).and_return(start)
+      @test_bed.stub(:finish_time).and_return(finish)
+      @test_bed.elapsed_time.should eql(expected)
     end
     
   end

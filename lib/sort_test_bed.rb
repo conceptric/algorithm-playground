@@ -10,7 +10,7 @@ class SortTestBed
   end      
   
   def elapsed_time
-    1
+    finish_time - start_time
   end
 
   def insertion_sorted 
