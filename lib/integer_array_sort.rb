@@ -24,6 +24,15 @@ class IntegerArraySort
       halves.first << halves.last.shift
     end
     halves
+  end                                               
+  
+  def self.recursively_sort_both_halves(unsorted)   
+    if unsorted.size == 2
+      [IntegerArraySort::insertion_sort(unsorted.first),
+        IntegerArraySort::insertion_sort(unsorted.last)]
+    else
+      unsorted
+    end
   end
 end
 

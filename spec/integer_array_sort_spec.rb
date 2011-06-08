@@ -73,5 +73,20 @@ describe "IntegerArraySort" do
       split.last.should eql(expected2)
     end
   end        
-  
+
+  describe "::recursively_sort_both_halves" do
+    it "sorts both halves of the original data independently" do
+      original = [[13,2,20,7],[1,11,9,12]]      
+      expected = [[2,7,13,20],[1,9,11,12]]
+      sorted = IntegerArraySort::recursively_sort_both_halves(original)
+      sorted.first.should eql(expected.first)
+      sorted.last.should eql(expected.last)
+    end
+    
+    it "returns the original array it is not in two parts" do
+      original = [6,5,4,3,2,1]
+      IntegerArraySort::recursively_sort_both_halves(original).
+        should eql(original)
+    end
+  end
 end
