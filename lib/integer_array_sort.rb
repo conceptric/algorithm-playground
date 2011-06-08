@@ -15,9 +15,11 @@ class IntegerArraySort
   end
 
   def self.merge_sort(unsorted)
-     
+     halves = split_array_into_two(unsorted)
+     sorted = recursively_sort_both_halves(halves)
+     merge_two_arrays(sorted)
   end
-  
+
   def self.split_array_into_two(unsorted)
     halves = [[],unsorted]
     while halves.first.size <= ( unsorted.size / 2 )
@@ -28,11 +30,33 @@ class IntegerArraySort
   
   def self.recursively_sort_both_halves(unsorted)   
     if unsorted.size == 2
-      [IntegerArraySort::insertion_sort(unsorted.first),
-        IntegerArraySort::insertion_sort(unsorted.last)]
+      [insertion_sort(unsorted.first), insertion_sort(unsorted.last)]
     else
       unsorted
     end
   end
+  
+  def self.merge_two_arrays(sorted)
+    merged = []
+    while !sorted.first.empty? || !sorted.last.empty?
+      if compare_the_front_of_arrays(sorted)
+        merged << sorted.first.shift
+      else
+        merged << sorted.last.shift
+      end
+    end
+    merged    
+  end
+  
+  def self.compare_the_front_of_arrays(sorted)
+    if sorted.first.first == nil
+      false
+    elsif sorted.last.first == nil
+      true
+    else
+      sorted.first.first < sorted.last.first
+    end
+  end
+    
 end
 
