@@ -19,8 +19,14 @@ describe "SortTestBed" do
     end
 
     it "uses the insertion sort method of IntegerArraySort" do
-      IntegerArraySort.should_receive(:insertion_sort).twice.
-      with([2,1])
+      IntegerArraySort.should_receive(:insertion_sort).
+        at_least(:twice)
+      SortTestBed.new([2,1]).benchmark_integer_sorting
+    end
+
+    it "uses the merge sort method of IntegerArraySort" do
+      IntegerArraySort.should_receive(:merge_sort).
+        at_least(:twice)
       SortTestBed.new([2,1]).benchmark_integer_sorting
     end
     
