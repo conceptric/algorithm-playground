@@ -50,6 +50,12 @@ describe "SortTestBed" do
       @test_bed.elapsed_time.should eql(expected)
     end
     
+    it "resets the timer" do             
+      @test_bed.reset_timer
+      @test_bed.start_time.should be_nil
+      @test_bed.finish_time.should be_nil
+      @test_bed.elapsed_time.should eql(0)
+    end
   end
   
 end

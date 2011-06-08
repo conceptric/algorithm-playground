@@ -5,12 +5,20 @@ class SortTestBed
 
   def initialize(the_array)
     @unsorted = the_array           
-    @start_time = nil
-    @finish_time = nil
+    reset_timer
   end      
   
-  def elapsed_time
-    finish_time - start_time
+  def elapsed_time    
+    if start_time == nil || finish_time == nil
+      0
+    else
+      finish_time - start_time
+    end
+  end
+
+  def reset_timer
+    @start_time = nil
+    @finish_time = nil    
   end
 
   def insertion_sorted 
