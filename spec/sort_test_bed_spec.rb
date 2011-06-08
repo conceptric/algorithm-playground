@@ -34,7 +34,11 @@ describe "SortTestBed" do
       @test_bed.finish_time.should_not be_nil
       @test_bed.finish_time.should be_instance_of(Time)
     end
-    it "returns the sort duration in milliseconds"
+
+    it "returns the sort duration in milliseconds" do
+      test_duration = @test_bed.elapsed_time
+      test_duration.should_not be_nil
+    end
     
   end
   

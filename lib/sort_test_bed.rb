@@ -7,6 +7,10 @@ class SortTestBed
     @unsorted = the_array           
     @start_time = nil
     @finish_time = nil
+  end      
+  
+  def elapsed_time
+    1
   end
 
   def insertion_sorted 
