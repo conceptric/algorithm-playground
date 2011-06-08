@@ -1,6 +1,6 @@
 require_relative 'integer_array_sort'
 
-class IntegerArraySortTester
+class SortTestBed
   attr_reader :unsorted
 
   def initialize(the_array)
