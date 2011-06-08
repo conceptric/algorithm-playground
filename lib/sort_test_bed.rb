@@ -8,7 +8,7 @@ class SortTestBed
     @unsorted = the_array           
   end      
 
-  def benchmark_insertion
+  def benchmark_integer_sorting
     Benchmark.bmbm do |x|
       x.report('Insertion') do
         IntegerArraySort::insertion_sort(@unsorted)

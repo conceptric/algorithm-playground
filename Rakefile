@@ -15,5 +15,5 @@ desc "Run insertion test"
 task :insert do
   require_relative './lib/sort_test_bed.rb'
   test_array = (1..1000).to_a.reverse          
-  SortTestBed.new(test_array).benchmark_insertion  
+  SortTestBed.new(test_array).benchmark_integer_sorting  
 end
