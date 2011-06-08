@@ -11,8 +11,8 @@ RSpec::Core::RakeTask.new('spec') do |spec|
   spec.rspec_opts = []
 end                  
 
-desc "Run insertion test"
-task :insert do
+desc "Run benchmark"
+task :benchmark do
   require_relative './lib/sort_test_bed.rb'
   test_array = (1..1000).to_a.reverse          
   SortTestBed.new(test_array).benchmark_integer_sorting  
