@@ -3,6 +3,18 @@ require_relative '../lib/integer_array_sort.rb'
 describe "IntegerArraySort" do
 
   describe "::insertion_sort into ascending order" do
+    it "returns an empty array when given nil" do
+      IntegerArraySort::insertion_sort(nil).should eql([])
+    end                                   
+
+    it "returns an empty array when supplied" do
+      IntegerArraySort::insertion_sort([]).should eql([])
+    end                                   
+
+    it "returns the original array when there is a single element" do
+      IntegerArraySort::insertion_sort([1]).should eql([1])
+    end                                   
+     
     it "reverses a simple 2 element array" do
       IntegerArraySort::insertion_sort([2,1]).should eql([1,2])
     end
@@ -28,6 +40,18 @@ describe "IntegerArraySort" do
   end 
   
   describe "::merge_sort into ascending order" do
+    it "returns an empty array when given nil" do
+      IntegerArraySort::merge_sort(nil).should eql([])
+    end                                   
+
+    it "returns an empty array when supplied" do
+      IntegerArraySort::merge_sort([]).should eql([])
+    end                                   
+
+    it "returns the original array when there is a single element" do
+      IntegerArraySort::merge_sort([1]).should eql([1])
+    end                                   
+    
     it "reverses a simple 2 element array" do
       IntegerArraySort::merge_sort([2,1]).should eql([1,2])
     end

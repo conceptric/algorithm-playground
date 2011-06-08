@@ -1,23 +1,35 @@
 class IntegerArraySort
   def self.insertion_sort(unsorted)
-    sorted = unsorted
-    n = unsorted.size
-    for j in 1..(n-1)
-      key = sorted[j]
-      i = j - 1
-      while i >= 0 && sorted[i] > key
-        sorted[i+1] = sorted[i]
-        i = i - 1
+    if unsorted.class == Array && !unsorted.empty?
+      sorted = unsorted
+      n = unsorted.size
+      for j in 1..(n-1)
+        key = sorted[j]
+        i = j - 1
+        while i >= 0 && sorted[i] > key
+          sorted[i+1] = sorted[i]
+          i = i - 1
+        end
+        sorted[i+1] = key
       end
-      sorted[i+1] = key
+      sorted
+    else
+      []
     end
-    sorted
   end
 
-  def self.merge_sort(unsorted)
-     halves = split_array_into_two(unsorted)
-     sorted = recursively_sort_both_halves(halves)
-     merge_two_arrays(sorted)
+  def self.merge_sort(unsorted)  
+    if unsorted.class == Array && !unsorted.empty?
+      if unsorted.size == 1
+        unsorted
+      else
+        halves = split_array_into_two(unsorted)
+        sorted = recursively_sort_both_halves(halves)
+        merge_two_arrays(sorted)
+      end
+    else
+      []
+    end
   end
 
   def self.split_array_into_two(unsorted)
@@ -37,15 +49,21 @@ class IntegerArraySort
   end
   
   def self.merge_two_arrays(sorted)
-    merged = []
-    while !sorted.first.empty? || !sorted.last.empty?
-      if compare_the_front_of_arrays(sorted)
-        merged << sorted.first.shift
-      else
-        merged << sorted.last.shift
+    if  sorted.size == 2 && 
+        sorted.first.class == Array && 
+        sorted.last.class == Array
+      merged = []                    
+      while !sorted.first.empty? || !sorted.last.empty?
+        if compare_the_front_of_arrays(sorted)
+          merged << sorted.first.shift
+        else
+          merged << sorted.last.shift
+        end
       end
+      merged    
+    else
+      sorted
     end
-    merged    
   end
   
   def self.compare_the_front_of_arrays(sorted)
